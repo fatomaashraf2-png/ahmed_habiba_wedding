@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#251a18">
+  <title>أحمد & حبيبة | دعوة الفرح</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --gold:#bba17a; --cream:#fffdf8; --ink:#f5efe5; --muted:#756b5e; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--cream); color:#4d4032; font-family:'Cairo',sans-serif; }
+    .cover { min-height:100svh; display:flex; align-items:center; justify-content:center; padding:24px; text-align:center;
+      background:linear-gradient(180deg,rgba(255,253,248,.16),rgba(75,59,42,.72)),url('images/couple-color.jpeg') center 38%/cover; position:relative; }
+    .frame { width:min(560px,100%); padding:44px 22px; border:1px solid rgba(216,184,121,.9); outline:1px solid rgba(216,184,121,.35); outline-offset:8px; background:rgba(255,253,248,.88); color:#4d4032; backdrop-filter:blur(5px); }
+    .small { letter-spacing:3px; color:var(--gold); font-size:.78rem; }
+    h1 { font-family:'Amiri',serif; font-weight:400; font-size:clamp(2.8rem,10vw,5rem); line-height:1.15; margin:12px 0; }
+    .amp { color:var(--gold); font-style:italic; }
+    .arabic-title { font-family:'Amiri',serif; font-size:1.6rem; margin:12px 0 26px; }
+    .btn { border:1px solid var(--gold); color:var(--ink); background:var(--gold); padding:13px 25px; border-radius:2px; font:600 1rem 'Cairo',sans-serif; cursor:pointer; transition:.2s; }
+    .btn:hover { transform:translateY(-2px); background:#cdbb9d; }
+    .hint { color:#756b5e; font-size:.8rem; margin-top:15px; }
+    main { max-width:920px; margin:auto; padding:58px 20px 30px; }
+    section { text-align:center; margin-bottom:64px; }
+    .eyebrow { color:var(--gold); letter-spacing:2px; font-size:.78rem; }
+    h2 { font-family:'Amiri',serif; font-size:2.35rem; font-weight:400; margin:8px 0 18px; }
+    .intro { color:var(--muted); line-height:2; max-width:600px; margin:0 auto; }
+    .divider { width:100px; height:1px; background:var(--gold); margin:24px auto; }
+    .details { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:26px; }
+    .detail { border:1px solid rgba(216,184,121,.45); padding:22px 10px; background:#f7f1e8; }
+    .detail .symbol { color:var(--gold); font-size:1.5rem; }
+    .detail strong { display:block; margin:8px 0; font-size:1rem; }
+    .detail span { color:var(--muted); font-size:.9rem; }
+    .countdown { display:flex; gap:10px; justify-content:center; direction:ltr; margin-top:25px; }
+    .timebox { min-width:72px; padding:14px 8px; border:1px solid rgba(216,184,121,.5); }
+    .timebox b { display:block; font-size:1.7rem; color:var(--gold); font-weight:600; }
+    .timebox span { font-size:.75rem; color:var(--muted); }
+    .gallery { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .gallery img { width:100%; height:440px; object-fit:cover; object-position:center; border:1px solid rgba(216,184,121,.55); }
+    .music-card { border:1px solid rgba(216,184,121,.45); padding:28px 18px; }
+    .music-card p { color:var(--muted); }
+    footer { text-align:center; padding:22px; color:var(--muted); border-top:1px solid rgba(216,184,121,.25); font-size:.8rem; }
+    .hidden { display:none !important; }
+    @media(max-width:600px) {
+      .frame { padding:35px 14px; }
+      .details { grid-template-columns:1fr; }
+      .detail { padding:16px; }
+      .gallery { grid-template-columns:1fr; }
+      .gallery img { height:auto; max-height:560px; object-fit:cover; }
+      main { padding-top:45px; }
+      .timebox { min-width:62px; }
+      .timebox b { font-size:1.35rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- عنصر الصوت المخفي الذي يقرأ الملف المحلي -->
+  <audio id="weddingMusic" preload="auto" loop>
+    <source src="song.mp3" type="audio/mpeg">
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <div class="cover" id="cover">
+    <div class="frame">
+      <div class="small">دعوة بكل الحب</div>
+      <h1>Ahmed <span class="amp">&</span> Habiba</h1>
+      <div class="arabic-title">أحمد ♥ حبيبة</div>
+      <p class="intro" style="margin-bottom:25px">يسعدنا أن تشاركونا بداية حكايتنا وأجمل أيام العمر</p>
+      <button class="btn" id="openInvite">افتح الدعوة ♡</button>
+      <div class="hint">اضغط لفتح الدعوة وتشغيل الأغنية</div>
+    </div>
+  </div>
+
+  <div id="invitation" class="hidden">
+    <main>
+      <section>
+        <div class="eyebrow">SAVE THE DATE</div>
+        <h2>يوم من العمر</h2>
+        <p class="intro">بفرحة قلوبنا، نتشرف بدعوتكم لمشاركتنا ليلة العمر. وجودكم يكمل فرحتنا ويجعلها ذكرى لا تُنسى.</p>
+        <div class="divider"></div>
+        <h2 style="font-size:2.7rem">أحمد <span style="color:var(--gold)">♥</span> حبيبة</h2>
+        <p class="intro">اللهم بارك لهما وبارك عليهما واجمع بينهما في خير</p>
+      </section>
+
+      <section>
+        <div class="eyebrow">THE WEDDING</div>
+        <h2>تفاصيل الفرح</h2>
+        <div class="details">
+          <div class="detail"><div class="symbol">♡</div><strong>التاريخ</strong><span>الاثنين<br>19 أكتوبر 2026</span></div>
+          <div class="detail"><div class="symbol">◷</div><strong>الوقت</strong><span>الساعة 9 مساءً</span></div>
+          <div class="detail"><div class="symbol">⌖</div><strong>المكان</strong><span>فيلا الريس</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="eyebrow">COUNTDOWN</div>
+        <h2>باقي على فرحتنا</h2>
+        <div class="countdown" aria-label="العد التنازلي">
+          <div class="timebox"><b id="days">00</b><span>يوم</span></div>
+          <div class="timebox"><b id="hours">00</b><span>ساعة</span></div>
+          <div class="timebox"><b id="minutes">00</b><span>دقيقة</span></div>
+          <div class="timebox"><b id="seconds">00</b><span>ثانية</span></div>
+        </div>
+        <p class="intro" id="countdownMessage" style="margin-top:18px"></p>
+      </section>
+
+      <section>
+        <div class="eyebrow">OUR MOMENTS</div>
+        <h2>أحلى حكاية</h2>
+        <div class="gallery">
+          <img src="images/couple-color.jpeg" alt="صورة أحمد وحبيبة">
+          <img src="images/couple-bw.jpeg" alt="أحمد وحبيبة في صورة بالأبيض والأسود">
+        </div>
+      </section>
+
+      <section>
+        <div class="eyebrow">A SONG FOR OUR NIGHT</div>
+        <h2>أغنيتنا</h2>
+        <div class="music-card">
+          <p>اضغط على الزر لتشغيل الأغنية والاستمتاع بالدعوة 🎵</p>
+          <button class="btn" id="playMusic">تشغيل / إيقاف الأغنية ♪</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>مستنيينكم تشاركونا فرحتنا</h2>
+        <p class="intro">وجودكم وسطنا هو أجمل هدية ❤️</p>
+        <div class="divider"></div>
+        <div class="arabic-title">أحمد & حبيبة</div>
+      </section>
+    </main>
+    <footer>صُممت بكل الحب لأحمد وحبيبة ♥</footer>
+  </div>
+
+  <script>
+    const music = document.getElementById('weddingMusic');
+    const openButton = document.getElementById('openInvite');
+    const playButton = document.getElementById('playMusic');
+
+    function playAudio() {
+      music.play().catch(error => {
+        console.log("تعذر التشغيل التلقائي:", error);
+      });
+    }
+
+    openButton.addEventListener('click', () => {
+      document.getElementById('cover').classList.add('hidden');
+      document.getElementById('invitation').classList.remove('hidden');
+      playAudio();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+
+    playButton.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        playButton.textContent = "إيقاف الأغنية ♫";
+      } else {
+        music.pause();
+        playButton.textContent = "تشغيل الأغنية ♪";
+      }
+    });
+
+    function updateCountdown() {
+      const target = new Date(2026, 9, 19, 21, 0, 0).getTime();
+      const now = Date.now();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        document.getElementById('countdownMessage').textContent = 'النهارده يوم فرحتنا! ♥';
+        return;
+      }
+      document.getElementById('days').textContent = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent = Math.floor(diff / 3600000) % 24;
+      document.getElementById('minutes').textContent = Math.floor(diff / 60000) % 60;
+      document.getElementById('seconds').textContent = Math.floor(diff / 1000) % 60;
+      document.getElementById('countdownMessage').textContent = 'كل ثانية بتقربنا من أجمل ليلة';
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
